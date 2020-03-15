@@ -73,10 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [QWERTY] = LAYOUT(
-      TD(TD_TAB_ESC),     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+      LT(NUMROW, KC_ESC),     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
       TD(TD_LSFT_CAPS),   MT(MOD_LALT, KC_A),   MT(MOD_LGUI, KC_S),   KC_D,   KC_F,   KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
       TD(TD_LCTRL_BSPC), KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   LT(RAISE,KC_TAB),   KC_LSFT, KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-              KC_LALT, LT(NUMROW, KC_LGUI), LT(NUMROW, KC_F13), LT(LOWER, KC_SPC), TD(RAISE_F12_ENT), LT(LOWER, KC_ENT), LT(RAISE, KC_SPC), TT(NUMROW),  KC_BSPC, KC_RALT
+              KC_LALT, KC_LGUI, LSFT_T(KC_F13), LT(LOWER, KC_SPC), TD(RAISE_F12_ENT), LT(LOWER, KC_ENT), LT(RAISE, KC_SPC), TT(NUMROW),  KC_BSPC, KC_RALT
     ),
 /*
  * Lower Layer: Symbols
