@@ -27,8 +27,7 @@ enum layers {
     };
 
 enum {
-  TD_TAB_ESC = 0,
-  TD_LSFT_CAPS,
+  TD_LSFT_CAPS = 0,
   TD_LCTRL_BSPC
 };
 
@@ -201,9 +200,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    //Tap once for Tab, twice for Escape
-  [TD_TAB_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_ESC),
-  //Tap once for LSFT, twice for Caps Lock
   [TD_LSFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
     //Tap once for Tab, twice for Escape
   [TD_LCTRL_BSPC]  = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, KC_BSPC),
