@@ -27,7 +27,8 @@ enum layers {
     };
 
 enum {
-  TD_LSFT_CAPS = 0,
+  TD_TAB_ESC = 0,
+  TD_LSFT_CAPS,
   TD_LCTRL_BSPC
 };
 
@@ -74,8 +75,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
       LT(NUMROW, KC_ESC),     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
       TD(TD_LSFT_CAPS),   MT(MOD_LALT, KC_A),   MT(MOD_LGUI, KC_S),   KC_D,   KC_F,   KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      TD(TD_LCTRL_BSPC), KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   LT(RAISE,KC_TAB),   KC_LSFT, KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-              KC_LALT, KC_LGUI, LSFT_T(KC_F13), LT(LOWER, KC_SPC), TD(RAISE_F12_ENT), LT(LOWER, KC_ENT), LT(RAISE, KC_SPC), TT(NUMROW),  KC_BSPC, KC_RALT
+      TD(TD_LCTRL_BSPC), KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   LT(RAISE,KC_TAB),   KC_LSFT, KC_LSFT, TT(NUMROW), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+              KC_LALT, KC_LGUI, TD(TD_LSFT_CAPS), LT(LOWER, KC_SPC), LT(RAISE, KC_ENT), LT(LOWER, KC_ENT), LT(RAISE, KC_SPC), KC_RSFT,  KC_RGUI, KC_RALT
     ),
 /*
  * Lower Layer: Symbols
@@ -200,6 +201,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+    //Tap once for Tab, twice for Escape
+  [TD_TAB_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_ESC),
+  //Tap once for LSFT, twice for Caps Lock
   [TD_LSFT_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
     //Tap once for Tab, twice for Escape
   [TD_LCTRL_BSPC]  = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, KC_BSPC),
@@ -329,23 +333,4 @@ void oled_task_user(void) {
 }
 #endif
 
-#ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        // Volume control
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    }
-    else if (index == 1) {
-        // Page up/Page down
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
-    }
-}
-#endif
+
